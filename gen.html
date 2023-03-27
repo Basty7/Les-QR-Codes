@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<title>Les codes QR</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="index.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+
+<body>
+	<nav>
+		<ul>
+			<li class="navlist"><a href="index.html#" class="navlist"><span class="material-symbols-outlined">home</span></a></li>
+			<li class="navlist"><a href="histoire.html#" class="navlist">L'histoire du Code QR</a></li>
+			<li class="navlist"><a href="" class="navlist">Le fonctionnement du Code QR</a></li>
+			<li class="navlist"><a href="" class="navlist">Les fonctions du Code QR</a></li>
+			<li class="navlist"><a href="gen.html#" class="navlist">Générateur avancé</a></li>
+		</ul>
+	</nav>
+	<h1 class="titre"><a href="#" class="titre">Les Codes QR</a></h1>
+	<select name="Fonction du Code QR" id="func_select">
+		<option value="none" selected disabled>Selectionnez une option</option>
+		<option value="http">Protocole HTTP</option>
+		<option value="wifi">WIFI</option>
+	</select>
+	<br>
+	<div id="gen">
+		<!-- Protocole HTTP -->
+		<div id="http" class="gen">
+			<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
+			<button onclick="clear_box();" title="Vider le champ" class="link-bt">X</button>
+			<button onclick="generer_QR();">Générer</button>
+		</div>
+		<!-- Réseau WIFI -->
+		<div id="wifi" class="gen">
+			<input type="text" id="ssid" required placeholder="Le nom de votre réseau">
+			<button onclick="clear_box('ssid');" title="Vider le champ" class="link-bt">X</button>
+			<input type="text" id="mdp" required placeholder="Le mode de passe de votre réseau">
+			<button onclick="clear_box('mdp');" title="Vider le champ" class="link-bt">X</button>
+			<select name="Protocole de sécurité" id="secu">
+				<option value="WPA" selected>WPA</option>
+				<option value="WEP">WEP</option>
+			</select>
+			<select name="Visibilité du réseau" id="visi">
+				<option value="false">Visible</option>
+				<option value="true">Caché</option>
+			</select>
+			<input type="text" id="colorFG" placeholder="Couleur d'avant plan">
+			<input type="text" id="colorBG" placeholder="Couleur d'arrière plan">
+			<button id="wifi_gen">Générer</button>
+
+		</div>
+	</div>
+	<br>
+	<a id="qrcode" download="QRCode"></a>
+</body>
+<script defer>
+	document.getElementById("func_select").addEventListener("change", function () {
+		show(this.value);
+	});
+	document.getElementById("wifi_gen").addEventListener("click", function () {
+		var ssid = document.getElementById("ssid").value;
+		var mdp = document.getElementById("mdp").value;
+		var secu = document.getElementById("secu").value;
+		var visi = document.getElementById("visi").value;
+		var colorFG = document.getElementById("colorFG").value;
+		var colorBG = document.getElementById("colorBG").value;
+		if (colorFG == "") {
+			colorFG = "#000000";
+		}
+		if (colorBG == "") {
+			colorBG = "#FFFFFF";
+		}
+		generer_QR_2(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode", colorFG, colorBG);
+		document.getElementById("qrcode").title = "Télécharger le Code QR";
+	});
+</script>
+
+</html>
