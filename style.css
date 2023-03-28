@@ -5,12 +5,14 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 
+/* Bandeau de navigation */
+
 nav {
 	position: fixed;
 	top: 0;
 	left: 0;
 	background: #dfc8b3;
-	width : 100%;
+	width: 100%;
 	text-align: center;
 	display: table;
 	margin-bottom: 1em;
@@ -28,7 +30,7 @@ li {
 }
 
 li:hover {
-	font-size: larger;
+	font-size: 0.8em;
 }
 
 a.navlist {
@@ -36,15 +38,17 @@ a.navlist {
 	float: top;
 }
 
-span {
-	display: inline-block;
+.material-symbols-outlined {
+	vertical-align: middle;
 }
 
-p{
-	font-size: 1em;
+nav:hover {
+	font-size: 2em;
 }
 
-h1.titre{
+/* Titre */
+
+h1.titre {
 	font-size: 2em;
 	text-align: center;
 	color: black;
@@ -52,35 +56,32 @@ h1.titre{
 	display: block;
 }
 
-a.titre {
-	color:black;
+/* Contenu */
+
+p {
+	font-size: 1em;
 }
+
+a.titre {
+	color: black;
+}
+
+h2, p, h1 {
+	text-indent: 0.5em;
+}
+
+/* Générateur */
 
 .link-bt {
 	margin-right: 0;
 	margin-left: 0;
 }
 
+.gen {
+	display: none;
+}
+
 .red {
 	color: red;
 	text-decoration: underline;
-}
-
-.material-symbols-outlined {
-	vertical-align: middle;
-}
-
-.material-symbols-outlined:hover{
-	font-size: 2em;
-}
-
-.gen{
-	display: none;
-}
-nav:hover {
-	font-size: 2em;
-}
-
-.lorem {
-	font-size: 1.5em;
 }
