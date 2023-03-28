@@ -34,7 +34,9 @@
 		<div id="http" class="gen">
 			<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
 			<button onclick="clear_box();" title="Vider le champ" class="link-bt">X</button>
-			<button onclick="generer_QR();">Générer</button>
+			<input type="text" id="colorFG" placeholder="Couleur d'avant plan">
+			<input type="text" id="colorBG" placeholder="Couleur d'arrière plan">
+			<button id="url_gen">Générer</button>
 		</div>
 		<!-- Réseau WIFI -->
 		<div id="wifi" class="gen">
@@ -77,6 +79,19 @@
 			colorBG = "#FFFFFF";
 		}
 		generer_QR_2(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode", colorFG, colorBG);
+		document.getElementById("qrcode").title = "Télécharger le Code QR";
+	});
+	document.getElementById("url_gen").addEventListener("click", function () {
+		var link = document.getElementById("link").value;
+		var colorFG = document.getElementById("colorFG").value;
+		var colorBG = document.getElementById("colorBG").value;
+		if (colorFG == "") {
+			colorFG = "#000000";
+		}
+		if (colorBG == "") {
+			colorBG = "#FFFFFF";
+		}
+		generer_QR_2(link, "qrcode", colorFG, colorBG);
 		document.getElementById("qrcode").title = "Télécharger le Code QR";
 	});
 </script>

@@ -15,8 +15,8 @@ async function generer_QR_2(string, divID, colorFG="#000000", colorBG="#FFFFFF")
 	qrdiv.innerHTML = '';
 	var qrc = new QRCode(qrdiv, {
 		text: string,
-		width: 128,
-		height: 128,
+		width: 256,
+		height: 256,
 		colorDark : colorFG,
 		colorLight : colorBG,
 		correctLevel : QRCode.CorrectLevel.H
