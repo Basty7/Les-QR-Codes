@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-	background-color: #ee852249;
+	background: linear-gradient(to bottom, rgb(134, 202, 223), rgb(138, 207, 253))  fixed no-repeat;
 	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
 }
 
 /* Bandeau de navigation */
@@ -11,29 +12,30 @@ nav {
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: #dfc8b3;
+	background: rgb(189, 188, 123) ;
 	width: 100%;
 	text-align: center;
 	display: table;
 	margin-bottom: 1em;
+
 }
 
-ul {
+nav>ul {
 	display: table-row;
 }
 
-li {
+nav>ul>li {
 	list-style: none;
 	display: table-cell;
 	font-size: large;
 	vertical-align: middle;
 }
 
-li:hover {
-	font-size: 0.8em;
+nav>ul>li:hover{
+	font-size: 1.5em;
 }
 
-a.navlist {
+nav>ul>li>a {
 	color: black;
 	float: top;
 }
@@ -41,9 +43,8 @@ a.navlist {
 .material-symbols-outlined {
 	vertical-align: middle;
 }
-
-nav:hover {
-	font-size: 2em;
+.material-symbols-outlined:hover {
+	font-size: 1.5em;
 }
 
 /* Titre */
@@ -54,6 +55,7 @@ h1.titre {
 	color: black;
 	margin-top: 1em;
 	display: block;
+	font-weight: 400;
 }
 
 /* Contenu */
@@ -66,8 +68,13 @@ a.titre {
 	color: black;
 }
 
-h2, p, h1 {
-	text-indent: 0.5em;
+.red {
+	color: red;
+	text-decoration: underline;
+}
+
+h2 {
+	text-decoration: underline;
 }
 
 /* Générateur */
@@ -81,7 +88,47 @@ h2, p, h1 {
 	display: none;
 }
 
-.red {
-	color: red;
+#qrcode {
+	padding: 2em;
+	background: radial-gradient(to center white, blue);
+}
+
+.qrimg {
+	display: block;
+	border: 0.2em solid black;
+}
+
+
+.funcs_sel {
+	text-indent: 10em;
+	left : 2em;
+
+}
+.funcs_sel_hover {
+	display: inline-block;
+	left : 2em;
+}
+
+/* Pied de page */
+
+footer {
+	text-align: center;
+	display: table-row;
+
+}
+.footer {
+	display: table;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgb(88, 88, 88);
+	font-size: small;
+}
+.sources {
+	float: top;
+	display: table-cell;
+	text-align: center;
+	color: white;
 	text-decoration: underline;
 }
