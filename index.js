@@ -7,15 +7,25 @@ async function generer_QR() {
 	var qrc = new QRCode(qrdiv, url);
 	await new Promise(r => setTimeout(r, 100));
 	var qrimg = qrdiv.getElementsByTagName("img")[0];
-	qrimg.onload = function () {
-		qrdiv.href = qrimg.src;
-		qrdiv.download = `QRCode ${url}.png`;
-	};
+	qrdiv.href = qrimg.src;
+	qrdiv.download = `QRCode ${url}.png`;
 }
 
-async function generer_QR_2(string, divID, colorFG = "#000000", colorBG = "#FFFFFF", border = 2) {
+async function generer_QR_2(string, divID) {
 	var qrdiv = document.getElementById(divID);
-	// qrdiv.innerHTML = '';
+	qrdiv.innerHTML = '';
+	var border = document.getElementById("border").value;
+	var colorFG = document.getElementById("colorFG").value;
+	var colorBG = document.getElementById("colorBG").value;
+	if (colorFG == "") {
+		colorFG = "#000000";
+	}
+	if (colorBG == "") {
+		colorBG = "#ffffff";
+	}
+	if (border == "") {
+		border = 0;
+	}
 	var qrc = new QRCode(qrdiv, {
 		text: string,
 		width: 256 + 8*border,
@@ -27,15 +37,22 @@ async function generer_QR_2(string, divID, colorFG = "#000000", colorBG = "#FFFF
 		correctLevel: QRCode.CorrectLevel.H
 		
 	});
-	await new Promise(r => setTimeout(r, 100));
-	var qrimg = qrdiv.getElementsByTagName("img")[0];
-	qrimg.onload = function () {
-		qrdiv.href = qrimg.src;
-		qrimg.classList.add("qrimg");
-		qrdiv.download = `QRCode.png`;
-		qrdiv.title = "Télécharger le Code QR";
 
-	};
+	await new Promise(r => setTimeout(r, 100));
+	// var qrimg = qrdiv.getElementsByTagName("img")[0];
+	// qrimg.onload = function () {
+	// 	qrdiv.href = qrimg.src;
+	// 	qrimg.classList.add("qrimg");
+	// 	qrdiv.download = `QRCode.png`;
+	// 	qrdiv.title = "Télécharger le Code QR";
+
+	// };
+	var svg = qrdiv.innerHTML;
+	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
+	svg = svg.slice(0, 4) + ' xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
+	qrdiv.download = `QRCode.svg`;
+	qrdiv.title = "Télécharger le Code QR";
+	qrdiv.href = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));;
 }
 
 // Fonction: Effacer le contenu de la zone de texte
@@ -51,7 +68,8 @@ function show(id) {
 	for (var i = 0; i < divs.length; i++) {
 		divs[i].style.display = "none";
 	}
-	document.getElementById(id).style.display = "block";
+	document.getElementById(id).style.display = "inline-block";
+	document.getElementById("colors").style.display = "inline-block";
 }
 
 if (location.href.split("/").slice(-1) == "index.html" || location.href.split("/").slice(-1) == "index.html#") {
@@ -66,34 +84,37 @@ if (location.href.split("/").slice(-1) == "index.html" || location.href.split("/
 	});
 }
 else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.split("/").slice(-1)[0] == "gen.html") {
-	document.getElementById("func_select").addEventListener("change", function () {show(this.value);});
+	// document.getElementById("func_select").addEventListener("change", function () {show(this.value);});
 	// Nouveau DropDown
 	document.getElementById("funcs_bt").addEventListener("mouseover", function () {
 		var funcs = document.getElementById("funcs");
-		funcs.hidden = false;
 		funcs.className = "funcs_sel_hover";
 	});
 	document.getElementById("funcs").addEventListener("mouseover", function () {
 		var funcs = document.getElementById("funcs");
-		funcs.hidden = false;
 		funcs.className = "funcs_sel_hover";
 	});
 
 	document.getElementById("funcs_bt").addEventListener("mouseout", function () {
 		var funcs = document.getElementById("funcs");
-		funcs.hidden = true;
 		funcs.className = "funcs_sel";
 	});
 	document.getElementById("funcs").addEventListener("mouseout", function () {
 		var funcs = document.getElementById("funcs");
-		funcs.hidden = true;
 		funcs.className = "funcs_sel";
 	});
 	var funcs = document.getElementById("funcs");
 	for (var i = 0; i < funcs.children.length; i++) {
 		funcs.children[i].addEventListener("click", function () {
-			console.log(this.id.slice(7));
+			// console.log(this.id.slice(7));
 			show(this.id.slice(7));
+		});
+		document.getElementById(funcs.children[i].id.slice(7)).addEventListener("keypress", function (event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				console.log(this.id+"_gen");
+				document.getElementById(this.id+"_gen").click();
+			}
 		});
 	}
 
@@ -104,33 +125,18 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 		var mdp = document.getElementById("mdp").value;
 		var secu = document.getElementById("secu").value;
 		var visi = document.getElementById("visi").value;
-		var border = document.getElementById("borderwifi").value;
-		var colorFG = document.getElementById("colorFGW").value;
-		var colorBG = document.getElementById("colorBGW").value;
-		if (colorFG == "") {
-			colorFG = "#000000";
-		}
-		if (colorBG == "") {
-			colorBG = "#FFFFFF";
-		}
-		if (border == "") {
-			border = 2;
-		}
-		generer_QR_2(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode", colorFG, colorBG, border);
+		generer_QR_2(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode");
 	});
 	// Protocole HTTP
-	document.getElementById("url_gen").addEventListener("click", function () {
+	document.getElementById("http_gen").addEventListener("click", function () {
 		var link = document.getElementById("link").value;
-		var border = document.getElementById("borderHTTP").value;
-		var colorFG = document.getElementById("colorFGHTTP").value;
-		var colorBG = document.getElementById("colorBGHTTP").value;
-		if (colorFG == "") {
-			colorFG = "#000000";
-		}
-		if (colorBG == "") {
-			colorBG = "#FFFFFF";
-		}
-		generer_QR_2(link, "qrcode", colorFG, colorBG, border);
+
+		generer_QR_2(link, "qrcode");
+	});
+	// Mailto
+	document.getElementById("mailto_gen").addEventListener("click", function () {
+		var mail = document.getElementById("mail").value;
+		generer_QR_2(`mailto:${mail}`, "qrcode");
 	});
 	// Carte de contact
 	document.getElementById("vCard_gen").addEventListener("click", function () {
@@ -138,15 +144,6 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 		var lastName = document.getElementById("lastName").value;
 		var email = document.getElementById("email").value;
 		var phone = document.getElementById("phone").value;
-		var border = document.getElementById("bordervCard").value;
-		var colorFG = document.getElementById("colorFGvCard").value;
-		var colorBG = document.getElementById("colorBGvCard").value;
-		if (colorFG == "") {
-			colorFG = "#000000";
-		}
-		if (colorBG == "") {
-			colorBG = "#FFFFFF";
-		}
 		var vCard = "BEGIN:VCARD\n" +
 			"VERSION:3.0\n" +
 			"N:" + lastName + ";" + firstName + ";;;\n" +
@@ -154,6 +151,15 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 			"EMAIL;TYPE=HOME,INTERNET, PREF:" + email + "\n" +
 			"TEL;TYPE=CELL:" + phone + "\n" +
 			"END:VCARD";
-		generer_QR_2(vCard, "qrcode", colorFG, colorBG, border);
+		generer_QR_2(vCard, "qrcode");
 	});
 };
+
+const navs = document.getElementsByTagName("nav")[0].getElementsByTagName("a");
+
+for (var i = 0; i < navs.length; i++) {
+	if (navs[i].href == location.href) {
+		navs[i].parentElement.style.backgroundColor = "#a66523df";
+	}
+
+}

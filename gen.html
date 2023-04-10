@@ -17,52 +17,44 @@
 		<ul>
 			<li class="navlist"><a href="index.html#" class="navlist" title="Retour à l'acceuil"><span class="material-symbols-outlined">home</span></a></li>
 			<li class="navlist"><a href="histoire.html#" class="navlist">L'histoire du Code QR</a></li>
-			<li class="navlist"><a href="" class="navlist">Le fonctionnement du Code QR</a></li>
-			<li class="navlist"><a href="" class="navlist">Les fonctions du Code QR</a></li>
+			<li class="navlist"><a href="principe.html#" class="navlist">Le fonctionnement du Code QR</a></li>
+			<li class="navlist"><a href="uses.html#" class="navlist">Les fonctions du Code QR</a></li>
 			<li class="navlist"><a href="gen.html#" class="navlist">Générateur avancé</a></li>
 		</ul>
 	</nav>
 	<h1 class="titre"><a href="#" class="titre">Les Codes QR</a></h1>
 	<!-- Sélécteur de fonction -->
-	<select name="Fonction du Code QR" id="func_select">
-		<option value="none" selected disabled>Selectionnez une option</option>
-		<option value="http">Protocole HTTP</option>
-		<option value="wifi">WIFI</option>
-		<option value="vCard">Contact</option>
-	</select>
-	<button id="funcs_bt" class="funcs_sel_bt">Fonction du code QR</button>
-	<div id="funcs" class="funcs_sel" hidden>
-		<span id="select_http">HTTP</span>
-		<span id="select_wifi">WIFI</span>
-		<span id="select_vCard">vCard</span>
+	<div class="funcsdiv">
+		<button id="funcs_bt" class="funcs_sel_bt">Fonction du code QR</button>
+		<div id="funcs" class="funcs_sel">
+			<span id="select_http" class="funcs_sel_it">HTTP</span>
+			<span id="select_mailto" class="funcs_sel_it">Mail</span>
+			<span id="select_wifi" class="funcs_sel_it">WiFi</span>
+			<span id="select_vCard" class="funcs_sel_it" title="Carte de contact">vCard</span>
+		</div>
 	</div>
+	<br><br>
 	<div id="gen">
 		<!-- Protocole HTTP -->
 		<div id="http" class="gen">
 			<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
-			<button onclick="clear_box();" title="Vider le champ" class="link-bt">X</button>
-			<input type="text" id="colorFGHTTP" placeholder="Couleur d'avant plan">
-			<input type="text" id="colorBGHTTP" placeholder="Couleur d'arrière plan">
-			<input type="number" id="borderHTTP" placeholder="Taille de la bordure">
-			<button id="url_gen">Générer</button>
+			<button onclick="clear_box();" title="Vider le champ" class="link-bt">X</button> <br>
+			<button id="http_gen">Générer</button>
 		</div>
 		<!-- Réseau WIFI -->
 		<div id="wifi" class="gen">
-			<input type="text" id="ssid" required placeholder="Le nom de votre réseau">
+			<input type="text" id="ssid" title="Le nom de votre réseau" placeholder="XXX_0000">
 			<button onclick="clear_box('ssid');" title="Vider le champ" class="link-bt">X</button>
 			<select name="Protocole de sécurité" title="Protocole de sécurité" id="secu">
 				<option value="WPA" selected>WPA</option>
 				<option value="WEP">WEP</option>
-			</select>
-			<input type="text" id="mdp" placeholder="Le mode de passe de votre réseau">
+			</select> <br>
+			<input type="text" id="mdp" title="Le mode de passe de votre réseau" placeholder="password123">
 			<button onclick="clear_box('mdp');" title="Vider le champ" class="link-bt">X</button>
 			<select name="Visibilité du réseau" title="Visibilité du réseau" id="visi">
 				<option value="false">Visible</option>
 				<option value="true">Caché</option>
 			</select>
-			<input type="number" id="borderwifi" placeholder="Taille de la bordure">
-			<input type="text" id="colorFGW" placeholder="Couleur d'avant plan">
-			<input type="text" id="colorBGW" placeholder="Couleur d'arrière plan">
 			<button id="wifi_gen">Générer</button>
 		</div>
 		<!-- vCard -->
@@ -71,13 +63,21 @@
 			<input type="text" id="lastName" placeholder="LEGRAND"> <button onclick="clear_box('lastName');" title="Vider le champ" class="link-bt">X</button>
 			<input type="email" id="email" placeholder="bernard.legrand@exemple.net"> <button onclick="clear_box('email');" title="Vider le champ" class="link-bt">X</button>
 			<input type="tel" id="phone" placeholder="+33 0 00 00 00 00"> <button onclick="clear_box('phone');" title="Vider le champ" class="link-bt">X</button>
-			<input type="number" id="bordervCard" placeholder="Taille de la bordure">
-			<input type="text" id="colorFGvCard" placeholder="Couleur d'avant plan"> <button onclick="clear_box('colorFGvCard');" title="Vider le champ" class="link-bt">X</button>
-			<input type="text" id="colorBGvCard" placeholder="Couleur d'arrière plan"> <button onclick="clear_box('colorBGvCard');" title="Vider le champ" class="link-bt">X</button>
 			<button id="vCard_gen">Générer</button>
 		</div>
+		<!-- Mail -->
+		<div id="mailto" class="gen">
+			<input type="email" id="mail" placeholder="bernard.legrand@exemple.com"> <button onclick="clear_box('mail');" title="Vider le champ" class="link-bt">X</button> <br>
+			<button id="mailto_gen">Générer</button>
+		</div>
+		<!-- Couleurs -->
+		<div id="colors" class="gen">
+			<input type="text" id="colorFG" placeholder="#000000" value="#000000" title="Couleur d'arrière plan">
+			<input type="text" id="colorBG" placeholder="#ffffff" value="#ffffff" title="Couleur d'avant plan">
+			<input type="number" id="border" placeholder="2" title="Taille de la bordure" value=2>
+		</div>
 	</div>
-	<!-- <br> -->
+	<br>
 	<a id="qrcode" download="QRCode"></a>
 </body>
 

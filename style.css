@@ -12,12 +12,12 @@ nav {
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgb(189, 188, 123) ;
+	background: rgb(189, 188, 123) ; 
 	width: 100%;
 	text-align: center;
 	display: table;
 	margin-bottom: 1em;
-
+	z-index: 2;
 }
 
 nav>ul {
@@ -33,11 +33,11 @@ nav>ul>li {
 
 nav>ul>li:hover{
 	font-size: 1.5em;
+	background-color: #a665235f;
 }
 
 nav>ul>li>a {
 	color: black;
-	float: top;
 }
 
 .material-symbols-outlined {
@@ -88,25 +88,84 @@ h2 {
 	display: none;
 }
 
+._gen {
+	display: block;
+}
+
 #qrcode {
-	padding: 2em;
-	background: radial-gradient(to center white, blue);
+	display: grid;
+	place-items: center;
+	size: min-content;
 }
 
 .qrimg {
 	display: block;
-	border: 0.2em solid black;
+	width: 45%;
 }
 
+#border {
+	width: 4em;
+}
+
+#colorFG {
+	width: 8em;
+}
+
+#colorBG {
+	width: 8em;
+}
+
+.funcs_sel_bt {
+	cursor: pointer;
+	background-color: #b89524;
+	color: white;
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.funcsdiv {
+	position: relative;
+	display: inline-block;
+}
 
 .funcs_sel {
-	text-indent: 10em;
-	left : 2em;
-
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
 }
+
+.funcs span {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	width: 100%;
+}
+
 .funcs_sel_hover {
-	display: inline-block;
-	left : 2em;
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	
+}
+.funcs_sel_it {
+	text-align: center;
+	padding-right: 1em;
+	display: block;
+	padding: 0 0;
+	margin: 0 0;
+}
+
+.funcs_sel_it:hover {
+	background-color: #ddd;
 }
 
 /* Pied de page */
@@ -122,13 +181,13 @@ footer {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	background-color: rgb(88, 88, 88);
+	background-color: #585858;
 	font-size: small;
 }
 .sources {
 	float: top;
 	display: table-cell;
 	text-align: center;
-	color: white;
+	color: #ffffff;
 	text-decoration: underline;
 }
