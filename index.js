@@ -155,11 +155,16 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 	});
 };
 
-const navs = document.getElementsByTagName("nav")[0].getElementsByTagName("a");
 
-for (var i = 0; i < navs.length; i++) {
-	if (navs[i].href == location.href) {
-		navs[i].parentElement.style.backgroundColor = "#a66523df";
+const navlis = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].children;
+
+for (var i = 0; i < navlis.length; i++) {
+	navlis[i].addEventListener("click", function () {
+		location.href = this.id + ".html#";
+	});
+	if (navlis[i].id + '.html#' == location.href.split("/").slice(-1)[0]) {
+		navlis[i].style.backgroundColor = "#a665239f";
+
 	}
-
 }
+

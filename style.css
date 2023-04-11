@@ -18,6 +18,7 @@ nav {
 	display: table;
 	margin-bottom: 1em;
 	z-index: 2;
+	cursor: pointer;
 }
 
 nav>ul {
@@ -32,19 +33,16 @@ nav>ul>li {
 }
 
 nav>ul>li:hover{
-	font-size: 1.5em;
+	/* font-size: 1.5em; */
 	background-color: #a665235f;
 }
 
-nav>ul>li>a {
-	color: black;
-}
+
 
 .material-symbols-outlined {
 	vertical-align: middle;
-}
-.material-symbols-outlined:hover {
-	font-size: 1.5em;
+	text-decoration: none;
+	width: 100%;
 }
 
 /* Titre */
