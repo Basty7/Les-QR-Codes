@@ -22,7 +22,7 @@
 			<li class="navlist" id="gen">Générateur avancé</li>
 		</ul>
 	</nav>
-	<h1 class="titre"><a href="#" class="titre">Les Codes QR</a></h1>
+	<h1 class="titre">Les Codes QR</h1>
 	<!-- Sélécteur de fonction -->
 	<div class="funcsdiv">
 		<button id="funcs_bt" class="funcs_sel_bt">Fonction du code QR</button>
@@ -38,7 +38,7 @@
 		<!-- Protocole HTTP -->
 		<div id="http" class="gen">
 			<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
-			<button onclick="clear_box();" title="Vider le champ" class="link-bt">X</button> <br>
+			<button onclick="clear_box('link');" title="Vider le champ" class="link-bt">X</button> <br>
 			<button id="http_gen">Générer</button>
 		</div>
 		<!-- Réseau WIFI -->

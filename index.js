@@ -1,52 +1,33 @@
 // Fonction: Générer le QR Code
-
-async function generer_QR() {
-	var qrdiv = document.getElementById("qrcode");
-	qrdiv.innerHTML = '';
-	var url = document.getElementById("link").value;
-	var qrc = new QRCode(qrdiv, url);
-	await new Promise(r => setTimeout(r, 100));
-	var qrimg = qrdiv.getElementsByTagName("img")[0];
-	qrdiv.href = qrimg.src;
-	qrdiv.download = `QRCode ${url}.png`;
-}
-
-async function generer_QR_2(string, divID) {
+async function generer_QR(string, divID) {
 	var qrdiv = document.getElementById(divID);
 	qrdiv.innerHTML = '';
-	var border = document.getElementById("border").value;
-	var colorFG = document.getElementById("colorFG").value;
-	var colorBG = document.getElementById("colorBG").value;
-	if (colorFG == "") {
-		colorFG = "#000000";
-	}
-	if (colorBG == "") {
-		colorBG = "#ffffff";
-	}
-	if (border == "") {
-		border = 0;
+	var tab = {
+		'border': 2,
+		'colorFG': '#000000',
+		'colorBG': '#ffffff',
+	};
+	const tab2 = Object.values(tab);
+	for (var i = 0; i < 3; i++) {
+		try {
+			tab[Object.keys(tab)[i]] = document.getElementById(Object.keys(tab)[i]).value;
+			if (tab[Object.keys(tab)[i]] == "") {
+				tab[Object.keys(tab)[i]] = tab2[i];
+			}
+		}
+		catch {tab[Object.keys(tab)[i]] = tab2[i];}
 	}
 	var qrc = new QRCode(qrdiv, {
 		text: string,
-		width: 256 + 8*border,
-		height: 256 + 8*border,
+		width: 256 + 8*tab['border'],
+		height: 256 + 8*tab['border'],
 		useSVG: true,
-		border: border,
-		colorDark: colorFG,
-		colorLight: colorBG,
+		border: tab['border'],
+		colorDark: tab['colorFG'],
+		colorLight: tab['colorBG'],
 		correctLevel: QRCode.CorrectLevel.H
-		
 	});
-
 	await new Promise(r => setTimeout(r, 100));
-	// var qrimg = qrdiv.getElementsByTagName("img")[0];
-	// qrimg.onload = function () {
-	// 	qrdiv.href = qrimg.src;
-	// 	qrimg.classList.add("qrimg");
-	// 	qrdiv.download = `QRCode.png`;
-	// 	qrdiv.title = "Télécharger le Code QR";
-
-	// };
 	var svg = qrdiv.innerHTML;
 	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
 	svg = svg.slice(0, 4) + ' xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
@@ -72,19 +53,42 @@ function show(id) {
 	document.getElementById("colors").style.display = "inline-block";
 }
 
+// Ajouter les évènements aux éléments de la barre de navigation
+const navlis = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].children;
+
+for (var i = 0; i < navlis.length; i++) {
+	navlis[i].addEventListener("click", function () {
+		location.href = this.id + ".html#";
+	});
+	if (navlis[i].id + '.html#' == location.href.split("/").slice(-1)[0]) {
+		navlis[i].style.backgroundColor = "#a665239f";
+
+	}
+}
+
+const titre = document.getElementsByTagName("h1")[0];
+titre.addEventListener("click", function () {
+	titre.title = "Retour en haut de la page";
+	location.href = "#";
+});
+
+// Ajouter les évènements aux éléments de la page d'accueil
+
 if (location.href.split("/").slice(-1) == "index.html" || location.href.split("/").slice(-1) == "index.html#") {
 	document.getElementById('link').addEventListener("keypress", function (event) {
 		if (event.key === "Enter") {
 			event.preventDefault();
-			generer_QR();
+			generer_QR(document.getElementById("link").value, "qrcode");
 		}
 	});
 	document.getElementById("url_gen").addEventListener("click", function () {
-		generer_QR();
+		generer_QR(document.getElementById("link").value, "qrcode");
 	});
 }
+
+// Ajouter les évènements aux éléments de la page de génération
+
 else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.split("/").slice(-1)[0] == "gen.html") {
-	// document.getElementById("func_select").addEventListener("change", function () {show(this.value);});
 	// Nouveau DropDown
 	document.getElementById("funcs_bt").addEventListener("mouseover", function () {
 		var funcs = document.getElementById("funcs");
@@ -94,7 +98,6 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 		var funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel_hover";
 	});
-
 	document.getElementById("funcs_bt").addEventListener("mouseout", function () {
 		var funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel";
@@ -106,37 +109,32 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 	var funcs = document.getElementById("funcs");
 	for (var i = 0; i < funcs.children.length; i++) {
 		funcs.children[i].addEventListener("click", function () {
-			// console.log(this.id.slice(7));
 			show(this.id.slice(7));
 		});
 		document.getElementById(funcs.children[i].id.slice(7)).addEventListener("keypress", function (event) {
 			if (event.key === "Enter") {
 				event.preventDefault();
-				console.log(this.id+"_gen");
 				document.getElementById(this.id+"_gen").click();
 			}
 		});
 	}
-
-
 	// WIFI
 	document.getElementById("wifi_gen").addEventListener("click", function () {
 		var ssid = document.getElementById("ssid").value;
 		var mdp = document.getElementById("mdp").value;
 		var secu = document.getElementById("secu").value;
 		var visi = document.getElementById("visi").value;
-		generer_QR_2(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode");
+		generer_QR(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode");
 	});
 	// Protocole HTTP
 	document.getElementById("http_gen").addEventListener("click", function () {
 		var link = document.getElementById("link").value;
-
-		generer_QR_2(link, "qrcode");
+		generer_QR(link, "qrcode");
 	});
 	// Mailto
 	document.getElementById("mailto_gen").addEventListener("click", function () {
 		var mail = document.getElementById("mail").value;
-		generer_QR_2(`mailto:${mail}`, "qrcode");
+		generer_QR(`mailto:${mail}`, "qrcode");
 	});
 	// Carte de contact
 	document.getElementById("vCard_gen").addEventListener("click", function () {
@@ -151,20 +149,6 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 			"EMAIL;TYPE=HOME,INTERNET, PREF:" + email + "\n" +
 			"TEL;TYPE=CELL:" + phone + "\n" +
 			"END:VCARD";
-		generer_QR_2(vCard, "qrcode");
+		generer_QR(vCard, "qrcode");
 	});
 };
-
-
-const navlis = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].children;
-
-for (var i = 0; i < navlis.length; i++) {
-	navlis[i].addEventListener("click", function () {
-		location.href = this.id + ".html#";
-	});
-	if (navlis[i].id + '.html#' == location.href.split("/").slice(-1)[0]) {
-		navlis[i].style.backgroundColor = "#a665239f";
-
-	}
-}
-
