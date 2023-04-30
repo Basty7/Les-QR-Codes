@@ -9,13 +9,13 @@
 	<script src="index.js" defer></script>
 	<script src="qrcode.min.js"></script>
 	<link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
 </head>
 
 <body>
 	<nav>
 		<ul>
-			<li id="index" class="navlist material-symbols-outlined"  title="Retour à l'acceuil">home</li>
+			<li id="index" class="navlist material-symbols-outlined" title="Retour à l'acceuil">home</li>
 			<li class="navlist" id="histoire">L'histoire du Code QR</li>
 			<li class="navlist" id="principe">Le fonctionnement du Code QR</li>
 			<li class="navlist" id="uses">Les fonctions du Code QR</li>
@@ -25,5 +25,6 @@
 	<h1 class="titre">Le fonctionnement du Code QR</h1>
 	<p>Le code QR est doté de deux lignes pointillées (une colonne et une rangée) dite de timing (terme anglais). Ces deux lignes permettent au logiciel d'identifier la localisation des début et fin de colonne et de rangée.
 		Une fois ces informations obtenues, le logiciel peut calculer l'emplacement des pixels à lire et la lecture d'un seul pixel suffit à lire un bit d'information.</p>
-	<div class="explain-div"><img src="QR_Character_Placement.svg" class="explain"></div>
+		<div class="expandableIMG" id="QR_exp"><img src="QR_Character_Placement.svg">
+		<p class="legende">La position des pixels du code QR en fonction de leur fonction</p></div>
 </body>

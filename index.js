@@ -8,16 +8,13 @@ async function generer_QR(string, divID) {
 		'colorBG': '#ffffff',
 	};
 	const tab2 = Object.values(tab);
-	for (var i = 0; i < 3; i++) {
-		try {
-			tab[Object.keys(tab)[i]] = document.getElementById(Object.keys(tab)[i]).value;
-			if (tab[Object.keys(tab)[i]] == "") {
-				tab[Object.keys(tab)[i]] = tab2[i];
-			}
+	for (let i = 0; i < 3; i++) {
+		tab[Object.keys(tab)[i]] = document.getElementById(Object.keys(tab)[i]).value;
+		if (tab[Object.keys(tab)[i]] == "") {
+			tab[Object.keys(tab)[i]] = tab2[i];
 		}
-		catch {tab[Object.keys(tab)[i]] = tab2[i];}
 	}
-	var qrc = new QRCode(qrdiv, {
+	const qrc = new QRCode(qrdiv, {
 		text: string,
 		width: 256 + 8*tab['border'],
 		height: 256 + 8*tab['border'],
@@ -28,9 +25,11 @@ async function generer_QR(string, divID) {
 		correctLevel: QRCode.CorrectLevel.H
 	});
 	await new Promise(r => setTimeout(r, 100));
-	const svg = qrdiv.innerHTML;
+	let svg = qrdiv.innerHTML;
+	console.log(typeof svg);
+	console.log(svg);
+	svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg"' + svg.slice(4);
 	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
-	svg = svg.slice(0, 4) + ' xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
 	qrdiv.download = `QRCode.svg`;
 	qrdiv.title = "Télécharger le Code QR";
 	qrdiv.href = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));;
@@ -46,7 +45,7 @@ function clear_box(id) {
 
 function show(id) {
 	const divs = document.getElementsByClassName("gen");
-	for (var i = 0; i < divs.length; i++) {
+	for (let i = 0; i < divs.length; i++) {
 		divs[i].style.display = "none";
 	}
 	document.getElementById(id).style.display = "inline-block";
@@ -56,7 +55,7 @@ function show(id) {
 // Ajouter les évènements aux éléments de la barre de navigation
 const navlis = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].children;
 
-for (var i = 0; i < navlis.length; i++) {
+for (let i = 0; i < navlis.length; i++) {
 	navlis[i].addEventListener("click", function () {
 		location.href = this.id + ".html#";
 	});
@@ -72,17 +71,15 @@ titre.addEventListener("click", function () {
 	location.href = "#";
 });
 
-const explain = document.getElementsByClassName("explain");
-for (var i = 0; i < explain.length; i++) {
-	explain[i].addEventListener("click", function () {
-		this.style.position = "absolute";
-		this.style.top = "0";
-		this.style.left = "0";
-		this.style.height = "100%";
-		this.style.background = "linear-gradient(to bottom, rgb(134, 202, 223), rgb(138, 207, 253))  fixed no-repeat";
-		this.style.backgroundSize = "100vw";
-		this.style.display = "grid";
-		// this.style.backgroundSize;
+function expandImage(img) {
+	img.classList.toggle("expandedIMG");
+	img.classList.toggle("expandableIMG");
+}
+
+const expandableIMGs = document.getElementsByClassName("expandableIMG");
+for (let i = 0; i < expandableIMGs.length; i++) {
+	expandableIMGs[i].addEventListener("click", function () {
+		expandImage(this);
 	});
 }
 
@@ -110,19 +107,19 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 		funcs.className = "funcs_sel_hover";
 	});
 	document.getElementById("funcs").addEventListener("mouseover", function () {
-		var funcs = document.getElementById("funcs");
+		let funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel_hover";
 	});
 	document.getElementById("funcs_bt").addEventListener("mouseout", function () {
-		var funcs = document.getElementById("funcs");
+		let funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel";
 	});
 	document.getElementById("funcs").addEventListener("mouseout", function () {
-		var funcs = document.getElementById("funcs");
+		let funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel";
 	});
 	const funcs = document.getElementById("funcs");
-	for (var i = 0; i < funcs.children.length; i++) {
+	for (let i = 0; i < funcs.children.length; i++) {
 		funcs.children[i].addEventListener("click", function () {
 			show(this.id.slice(7));
 		});
