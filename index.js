@@ -28,7 +28,7 @@ async function generer_QR(string, divID) {
 	let svg = qrdiv.innerHTML;
 	console.log(typeof svg);
 	console.log(svg);
-	svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg"' + svg.slice(4);
+	svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
 	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
 	qrdiv.download = `QRCode.svg`;
 	qrdiv.title = "Télécharger le Code QR";
