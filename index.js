@@ -26,8 +26,6 @@ async function generer_QR(string, divID) {
 	});
 	await new Promise(r => setTimeout(r, 100));
 	let svg = qrdiv.innerHTML;
-	console.log(typeof svg);
-	console.log(svg);
 	svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
 	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
 	qrdiv.download = `QRCode.svg`;
@@ -65,11 +63,15 @@ for (let i = 0; i < navlis.length; i++) {
 	}
 }
 
+// Titre cliquable
+
 const titre = document.getElementsByTagName("h1")[0];
 titre.addEventListener("click", function () {
 	titre.title = "Retour en haut de la page";
 	location.href = "#";
 });
+
+// Permettre l'expansion des images
 
 function expandImage(img) {
 	img.classList.toggle("expandedIMG");
@@ -102,26 +104,25 @@ if (location.href.split("/").slice(-1) == "index.html" || location.href.split("/
 
 else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.split("/").slice(-1)[0] == "gen.html") {
 	// Nouveau DropDown
+	const funcs = document.getElementById("funcs");
 	document.getElementById("funcs_bt").addEventListener("mouseover", function () {
-		const funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel_hover";
 	});
 	document.getElementById("funcs").addEventListener("mouseover", function () {
-		let funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel_hover";
 	});
 	document.getElementById("funcs_bt").addEventListener("mouseout", function () {
-		let funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel";
 	});
 	document.getElementById("funcs").addEventListener("mouseout", function () {
-		let funcs = document.getElementById("funcs");
 		funcs.className = "funcs_sel";
 	});
-	const funcs = document.getElementById("funcs");
+	let fonction = "";
 	for (let i = 0; i < funcs.children.length; i++) {
 		funcs.children[i].addEventListener("click", function () {
 			show(this.id.slice(7));
+			funcs.className = "funcs_sel";
+			fonction = this.id.slice(7);
 		});
 		document.getElementById(funcs.children[i].id.slice(7)).addEventListener("keypress", function (event) {
 			if (event.key === "Enter") {
@@ -130,37 +131,43 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 			}
 		});
 	}
-	// WIFI
-	document.getElementById("wifi_gen").addEventListener("click", function () {
-		const ssid = document.getElementById("ssid").value;
-		const mdp = document.getElementById("mdp").value;
-		const secu = document.getElementById("secu").value;
-		const visi = document.getElementById("visi").value;
-		generer_QR(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode");
-	});
-	// Protocole HTTP
-	document.getElementById("http_gen").addEventListener("click", function () {
-		const link = document.getElementById("link").value;
-		generer_QR(link, "qrcode");
-	});
-	// Mailto
-	document.getElementById("mailto_gen").addEventListener("click", function () {
-		const mail = document.getElementById("mail").value;
-		generer_QR(`mailto:${mail}`, "qrcode");
-	});
-	// Carte de contact
-	document.getElementById("vCard_gen").addEventListener("click", function () {
-		const firstName = document.getElementById("firstName").value;
-		const lastName = document.getElementById("lastName").value;
-		const email = document.getElementById("email").value;
-		const phone = document.getElementById("phone").value;
-		const vCard = "BEGIN:VCARD\n" +
-			"VERSION:3.0\n" +
-			"N:" + lastName + ";" + firstName + ";;;\n" +
-			"FN:" + firstName + " " + lastName + "\n" +
-			"EMAIL;TYPE=HOME,INTERNET, PREF:" + email + "\n" +
-			"TEL;TYPE=CELL:" + phone + "\n" +
-			"END:VCARD";
-		generer_QR(vCard, "qrcode");
+	document.getElementById("gen-bt").addEventListener("click", function () {
+		switch (fonction) {
+			case "http":
+				const link = document.getElementById("link").value;
+				generer_QR(link, "qrcode");
+				console.log("Went through http");
+				break;
+			case "wifi":
+				const ssid = document.getElementById("ssid").value;
+				const mdp = document.getElementById("mdp").value;
+				const secu = document.getElementById("secu").value;
+				const visi = document.getElementById("visi").value;
+				generer_QR(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode");;
+				console.log("Went through wifi");
+				break;
+			case "mailto":
+				const mail = document.getElementById("mail").value;
+				generer_QR(`mailto:${mail}`, "qrcode");
+				console.log("Went through mailto");
+				break;
+			case "vCard":
+				const firstName = document.getElementById("firstName").value;
+				const lastName = document.getElementById("lastName").value;
+				const email = document.getElementById("email").value;
+				const phone = document.getElementById("phone").value;
+				const vCard = "BEGIN:VCARD\n" +
+					"VERSION:3.0\n" +
+					"N:" + lastName + ";" + firstName + ";;;\n" +
+					"FN:" + firstName + " " + lastName + "\n" +
+					"EMAIL;TYPE=HOME,INTERNET, PREF:" + email + "\n" +
+					"TEL;TYPE=CELL:" + phone + "\n" +
+					"END:VCARD";
+				generer_QR(vCard, "qrcode");
+				console.log("Went through vCard");
+				break;
+			default:
+				break;
+		}
 	});
 };

@@ -6,7 +6,7 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    version="1.1"
-   width="590"
+   width="675"
    height="368"
    id="svg2">
   <metadata
@@ -1005,7 +1005,7 @@
        x="368"
        y="192"
        id="tspan4250"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Arial">Ordre des bits (1 is MSB):</tspan></text>
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Arial">Ordre des bits (1 est le bit le plus signicatif):</tspan></text>
   <text
      x="368"
      y="296"
