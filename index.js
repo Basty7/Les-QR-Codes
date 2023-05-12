@@ -1,5 +1,5 @@
 // Fonction: Générer le QR Code
-async function generer_QR(string, divID) {
+async function generer_QR(string, divID, isSimple = false) {
 	const qrdiv = document.getElementById(divID);
 	qrdiv.innerHTML = '';
 	const tab = {
@@ -7,11 +7,13 @@ async function generer_QR(string, divID) {
 		'colorFG': '#000000',
 		'colorBG': '#ffffff',
 	};
-	const tab2 = Object.values(tab);
-	for (let i = 0; i < 3; i++) {
-		tab[Object.keys(tab)[i]] = document.getElementById(Object.keys(tab)[i]).value;
-		if (tab[Object.keys(tab)[i]] == "") {
-			tab[Object.keys(tab)[i]] = tab2[i];
+	if (!isSimple) {
+		const tab2 = Object.values(tab);
+		for (let i = 0; i < 3; i++) {
+			tab[Object.keys(tab)[i]] = document.getElementById(Object.keys(tab)[i]).value;
+			if (tab[Object.keys(tab)[i]] == "") {
+				tab[Object.keys(tab)[i]] = tab2[i];
+			}
 		}
 	}
 	const qrc = new QRCode(qrdiv, {
@@ -80,8 +82,8 @@ function expandImage(img) {
 
 const expandableIMGs = document.getElementsByClassName("expandableIMG");
 for (let i = 0; i < expandableIMGs.length; i++) {
-	expandableIMGs[i].addEventListener("click", function () {
-		expandImage(this);
+	expandableIMGs[i].children[0].addEventListener("click", function () {
+		expandImage(this.parentElement);
 	});
 }
 
@@ -92,11 +94,11 @@ if (location.href.split("/").slice(-1) == "index.html" || location.href.split("/
 	document.getElementById('link').addEventListener("keypress", function (event) {
 		if (event.key === "Enter") {
 			event.preventDefault();
-			generer_QR(document.getElementById("link").value, "qrcode");
+			generer_QR(document.getElementById("link").value, "qrcode", true);
 		}
 	});
 	document.getElementById("url_gen").addEventListener("click", function () {
-		generer_QR(document.getElementById("link").value, "qrcode");
+		generer_QR(document.getElementById("link").value, "qrcode", true);
 	});
 }
 

@@ -22,8 +22,22 @@
 		</ul>
 	</nav>
 	<h1 class="titre">Le fonctionnement du Code QR</h1>
-	<p>Le code QR est doté de deux lignes pointillées (une colonne et une rangée) dite de timing (terme anglais). Ces deux lignes permettent au logiciel d'identifier la localisation des début et fin de colonne et de rangée.
-		Une fois ces informations obtenues, le logiciel peut calculer l'emplacement des pixels à lire et la lecture d'un seul pixel suffit à lire un bit d'information.</p>
-		<div class="expandableIMG" id="QR_exp"><img src="assets/QR_Character_Placement.svg">
-		<p class="legende">La position des pixels du code QR en fonction de leur fonction</p></div>
+	<div class="Flex1">
+		<p>Le code QR est doté de deux lignes pointillées (une colonne et une rangée) dite de timing (terme anglais). Ces deux lignes permettent au logiciel d'identifier la localisation des début et fin de colonne et de rangée.
+			Une fois ces informations obtenues, le logiciel peut calculer l'emplacement des pixels à lire et la lecture d'un seul pixel suffit à lire un bit d'information.
+			Comme vous le voyez, le code QR est composé de deux couleurs: le noir et le blanc. Le carré noir <span
+				class="material-symbols-outlined" style="vertical-align: bottom; font-variation-settings: 'FILL' 1;">square</span>
+			représente un bit à 1 et le carré blanc <span class="material-symbols-outlined"
+				style="vertical-align: bottom; font-variation-settings: 'FILL' 1; color: white;">square</span> représente un bit à
+			0. En effet, le code QR n'encode en réalité qu'une chaîne de caractères, chaque caractère est donc converti en binaire.
+		
+		</p>
+		<div class="expandableIMG" id="MyGithub"><img src="assets/My_Github_Page.svg" alt="Un QR Code menant vers ma page Github" title="Un QR Code menant vers ma page Github" id="MyGithubIMG">
+		<p class="legende">Un QR Code menant tout droit vers <a href="https://github.com/basty7" class="legende">ma page Github</a></p>
+		</div>
+	</div>
+		<div class="expandableIMG" id="QR_exp">
+			<img src="assets/QR_Character_Placement.svg">
+			<p class="legende">La position des pixels du code QR selon leur fonction</p>
+		</div>
 </body>
