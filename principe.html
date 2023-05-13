@@ -23,6 +23,15 @@
 	</nav>
 	<h1 class="titre">Le fonctionnement du Code QR</h1>
 	<div class="Flex1">
+		<p>Le code QR est un code-barres en deux dimensions (ou code matriciel) constitué de modules noirs disposés dans un carré à fond blanc. L'agencement de ces points définit l'information que contient le code. Il peut être lu grâce à un lecteur de code-barres, un téléphone mobile, une webcam ou une tablette.<br><br>
+			Les quatre carrés permettent à l'appareil qui lit le code QR de déterminer l'orientation du code. En effet, le code QR peut être lu dans n'importe quel sens, il n'y a pas de sens de lecture. C'est pour cela que les carrés sont placés aux quatre coins du code QR. Ils permmettent donc de lire le code QR correctement.<br>
+		</p>
+		<div class="expandableIMG" id="Square">
+			<img src="assets/Calibrate_square.svg" alt="Carré de calibration du lecteur">
+			<p class="legende">Les carrés de calibration du lecteur</p>
+		</div>
+	</div>
+	<div class="Flex1">
 		<p>Le code QR est doté de deux lignes pointillées (une colonne et une rangée) dite de timing (terme anglais). Ces deux lignes permettent au logiciel d'identifier la localisation des début et fin de colonne et de rangée.
 			Une fois ces informations obtenues, le logiciel peut calculer l'emplacement des pixels à lire et la lecture d'un seul pixel suffit à lire un bit d'information.
 			Comme vous le voyez, le code QR est composé de deux couleurs: le noir et le blanc. Le carré noir <span
@@ -30,8 +39,11 @@
 			représente un bit à 1 et le carré blanc <span class="material-symbols-outlined"
 				style="vertical-align: bottom; font-variation-settings: 'FILL' 1; color: white;">square</span> représente un bit à
 			0. En effet, le code QR n'encode en réalité qu'une chaîne de caractères, chaque caractère est donc converti en binaire.
-		
-		</p>
+			<br><br><br><br><br>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos id officiis ipsum? Nisi commodi iste minima accusantium provident voluptatum repellat aut in pariatur! Eveniet, fuga. Officia eligendi nemo facere sint!
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ullam beatae consequatur odit quo vitae quidem illo quasi consectetur corporis, tempore nihil, cupiditate ut quisquam ducimus veritatis at nobis corrupti.
+		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deleniti, quibusdam maiores omnis hic optio nobis eveniet quas enim pariatur? Sunt consequuntur blanditiis quisquam deserunt at, possimus quos eveniet! Rerum.
+	</p>
 		<div class="expandableIMG" id="MyGithub"><img src="assets/My_Github_Page.svg" alt="Un QR Code menant vers ma page Github" title="Un QR Code menant vers ma page Github" id="MyGithubIMG">
 		<p class="legende">Un QR Code menant tout droit vers ma <a href="https://github.com/basty7" class="legende">page Github</a></p>
 		</div>
@@ -40,7 +52,7 @@
 			<img src="assets/QR_Character_Placement.svg">
 			<p class="legende">La position des pixels du code QR selon leur fonction</p>
 		</div>
-		<br><br><br>
+		
 		<div class="footer">
 			<footer>
 				<p class="sources">Sources:</p>

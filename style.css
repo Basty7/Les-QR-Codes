@@ -154,7 +154,7 @@ a.legende {
 	display: flex;
 	flex-direction: row;
 	column-gap: 2em;
-	margin: 0 1em;
+	margin: 1em;
 }
 
 .expandableIMG>#MyGithubIMG {
