@@ -78,6 +78,12 @@ titre.addEventListener("click", function () {
 function expandImage(img) {
 	img.classList.toggle("expandedIMG");
 	img.classList.toggle("expandableIMG");
+	if (document.getElementsByClassName("footer")[0].getAttribute("hidden") == "false") {
+		document.getElementsByClassName("footer")[0].setAttribute("hidden", "true")
+	}
+	else {
+		document.getElementsByClassName("footer")[0].setAttribute("hidden", "false")
+	}
 }
 
 const expandableIMGs = document.getElementsByClassName("expandableIMG");
@@ -108,6 +114,9 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 	// Nouveau DropDown
 	const funcs = document.getElementById("funcs");
 	document.getElementById("funcs_bt").addEventListener("mouseover", function () {
+		funcs.className = "funcs_sel_hover";
+	});
+	document.getElementById("funcs_bt").addEventListener("click", function () {
 		funcs.className = "funcs_sel_hover";
 	});
 	document.getElementById("funcs").addEventListener("mouseover", function () {

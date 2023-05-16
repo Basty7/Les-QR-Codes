@@ -1,5 +1,7 @@
 /* Feuille de style pour toutes les pages */
 
+
+
 /* Import des polices */
 
 @font-face {
@@ -20,9 +22,13 @@
 }
 
 body {
-	background: linear-gradient(to bottom, rgb(134, 202, 223), rgb(138, 207, 253))  fixed no-repeat;
+	background: linear-gradient(to bottom, rgb(144, 212, 233), rgb(138, 207, 253))  fixed no-repeat;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 400;
+}
+
+*:not(.footer, footer, nav, nav>ul>li, span, h1, *[style*="diplay:inline"] ){
+	margin: 1em 2em;
 }
 
 /* Bandeau de navigation */
@@ -98,6 +104,7 @@ h1.titre {
 
 p {
 	font-size: 1em;
+	margin: 0 inherit;
 }
 
 .red {
@@ -154,7 +161,7 @@ a.legende {
 	display: flex;
 	flex-direction: row;
 	column-gap: 2em;
-	margin: 1em;
+	margin: 1em 2em;
 }
 
 .expandableIMG>#MyGithubIMG {
@@ -255,6 +262,7 @@ footer {
 	background-color: #585858;
 	font-size: small;
 }
+
 .sources {
 	float: top;
 	display: table-cell;
