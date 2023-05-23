@@ -53,7 +53,7 @@ function show(id) {
 }
 
 // Ajouter les évènements aux éléments de la barre de navigation
-const navlis = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].children;
+const navlis = document.getElementsByTagName("nav")[0].children;
 
 for (let i = 0; i < navlis.length; i++) {
 	navlis[i].addEventListener("click", function () {

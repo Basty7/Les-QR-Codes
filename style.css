@@ -27,8 +27,8 @@ body {
 	font-weight: 400;
 }
 
-*:not(.footer, footer, nav, nav>ul>li, span, h1, *[style*="diplay:inline"] ){
-	margin: 1em 2em;
+*:not(.footer, footer, nav, nav>ul>li, span, h1, span, i, a, p, br, nav, nav>p, [style*="diplay:inline"]){
+	margin: 1em 1.5em;
 }
 
 /* Bandeau de navigation */
@@ -40,35 +40,32 @@ nav {
 	background: rgb(189, 188, 123) ; 
 	width: 100%;
 	text-align: center;
-	display: table;
+	display: flex;
 	margin-bottom: 1em;
 	z-index: 2;
 	cursor: pointer;
+	justify-content: space-around;
+	overflow: 0;
 }
 
-
-nav>ul {
-	display: table-row;
-}
-
-nav>ul>li {
-	list-style: none;
-	display: table-cell;
+nav>p {
 	font-size: large;
 	vertical-align: middle;
 	text-decoration: underline;
+	margin: 0;
+	padding: 0 1em;
+	width: max-content;
+	flex-grow: 1;
 }
 
-nav>ul>li:hover{
+nav>p:hover{
 	background-color: #a665235f;
 }
 
-nav>ul>li.material-symbols-outlined {
+nav>p.material-symbols-outlined {
 	vertical-align: middle;
 	text-decoration: none;
-	width: 100%;
 }
-
 
 .material-symbols-outlined {
 	font-family: 'Material Symbols Outlined';
@@ -104,7 +101,7 @@ h1.titre {
 
 p {
 	font-size: 1em;
-	margin: 0 inherit;
+	margin: 0 1.5em;
 }
 
 .red {
@@ -162,6 +159,18 @@ a.legende {
 	flex-direction: row;
 	column-gap: 2em;
 	margin: 1em 2em;
+}
+
+@media screen and (orientation : portrait){
+	.Flex1 {
+		flex-direction: column;
+	}
+	*:not(.footer, footer, nav, nav>ul>li, span, h1, span, i, a, p, br, [style*="diplay:inline"]){
+		margin: 1em 0.5em;
+	}
+	nav {
+		flex-wrap: wrap;
+	}
 }
 
 .expandableIMG>#MyGithubIMG {
@@ -270,6 +279,7 @@ footer {
 	color: #ffffff;
 	text-decoration: underline;
 }
+
 #index .footer {
 	bottom: 0;
 }
