@@ -78,12 +78,8 @@ titre.addEventListener("click", function () {
 function expandImage(img) {
 	img.classList.toggle("expandedIMG");
 	img.classList.toggle("expandableIMG");
-	if (document.getElementsByClassName("footer")[0].getAttribute("hidden") == "false") {
-		document.getElementsByClassName("footer")[0].setAttribute("hidden", "true")
-	}
-	else {
-		document.getElementsByClassName("footer")[0].setAttribute("hidden", "false")
-	}
+		document.getElementsByClassName("footer")[0].classList.toggle("hidden")
+
 }
 
 const expandableIMGs = document.getElementsByClassName("expandableIMG");

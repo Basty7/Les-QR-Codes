@@ -27,8 +27,8 @@ body {
 	font-weight: 400;
 }
 
-*:not(.footer, footer, nav, nav>ul>li, span, h1, span, i, a, p, br, nav, nav>p, [style*="diplay:inline"]){
-	margin: 1em 1.5em;
+*:not(.footer, footer, nav, nav>ul>li, span, h1, span, i, a, p, br, nav, nav>p, .legende, section, .expandableIMG, .expandableIMG>img, [style*="diplay:inline"]){
+	margin: 1vh 1.5vw;
 }
 
 /* Bandeau de navigation */
@@ -119,7 +119,13 @@ h2 {
 	margin: 0;
 }
 
-.expandableIMG>img {cursor: zoom-in;}
+.expandableIMG>img {
+	cursor: zoom-in;
+}
+
+.expandableIMG#masahiro>img {
+	width: 15vw;
+}
 
 .expandedIMG{
 	display: grid;
@@ -132,9 +138,17 @@ h2 {
 	height: 100%;
 	cursor: zoom-out;
 	font-size: 1.6em;
+	margin:0;
+	z-index: 1;
 }
 .expandedIMG>img {
-	height: 90%;
+	margin-left: 0;
+	height: 80vh;
+	margin-top: 1em;
+}
+
+.expandedIMG>#myGithubIMG {
+	width: 75%;
 	margin-top: 1em;
 }
 
@@ -147,6 +161,7 @@ p.legende {
 	font-size: 0.8em;
 	color: #494949;
 	cursor: initial;
+	margin: 1em 0;
 }
 
 a.legende {
@@ -165,16 +180,17 @@ a.legende {
 	.Flex1 {
 		flex-direction: column;
 	}
-	*:not(.footer, footer, nav, nav>ul>li, span, h1, span, i, a, p, br, [style*="diplay:inline"]){
-		margin: 1em 0.5em;
-	}
+	
 	nav {
 		flex-wrap: wrap;
+	}
+	#QR_exp>img {
+		width: 100%;
 	}
 }
 
 .expandableIMG>#MyGithubIMG {
-	width: 15em;
+	width: 15vw;
 }
 
 /* Générateur */
@@ -212,12 +228,17 @@ a.legende {
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
+	margin: 0;
 }
 
 .funcsdiv {
 	position: relative;
 	display: inline-block;
+	margin: 0;
 } 
+.funcsdiv *, #gen, #gen *, #link, .link-bt, #url_gen, #funcs_bt, #funcs{
+	margin: 0;
+}
 
 .funcs_sel {
 	display: none;
@@ -242,15 +263,13 @@ a.legende {
 	background-color: #f1f1f1;
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-	
+	margin: 0;
 }
 .funcs_sel_it {
 	text-align: center;
 	padding-right: 1em;
 	display: block;
 	padding: 0 0;
-	margin: 0 0;
 }
 
 .funcs_sel_it:hover {
@@ -282,4 +301,8 @@ footer {
 
 #index .footer {
 	bottom: 0;
+}
+
+.hidden, .hidden * {
+	display: none;
 }
