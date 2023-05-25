@@ -1,6 +1,8 @@
 /* Feuille de style pour toutes les pages */
 
-
+html {
+	scroll-behavior: smooth;
+}
 
 /* Import des polices */
 
@@ -55,7 +57,7 @@ nav>p {
 	margin: 0;
 	padding: 0 1em;
 	width: max-content;
-	flex-grow: 1;
+	flex-grow: 2;
 }
 
 nav>p:hover{
@@ -65,6 +67,7 @@ nav>p:hover{
 nav>p.material-symbols-outlined {
 	vertical-align: middle;
 	text-decoration: none;
+	flex-grow: 0.5;
 }
 
 .material-symbols-outlined {
@@ -112,6 +115,7 @@ p {
 h2 {
 	text-decoration: underline;
 	font-weight: 400;
+	margin: 1.5vh 1.5vw;
 }
 
 .expandableIMG {
@@ -184,13 +188,41 @@ a.legende {
 	nav {
 		flex-wrap: wrap;
 	}
-	#QR_exp>img {
-		width: 100%;
+	.expandableIMG#QR_exp>img, .expandableIMG#masahiro>img {
+		width: 90vw;
+		height: auto;
+		margin-top: 3vh;
+	}
+	.expandableIMG#square>img, .expandableIMG#MyGithub>img {
+		width: 70vw;
+		height: auto;
+		margin-top: 3vh;
 	}
 }
 
 .expandableIMG>#MyGithubIMG {
 	width: 15vw;
+}
+
+code#code {
+	font-size: 1em;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #ddd;
+	padding: 0.5em;
+	border-radius: 0.5em;
+	border-color: black;
+	border-style: solid;
+	position: static;
+	display: block;
+	width: fit-content;
+	margin: auto 0;
+}
+code#code>span {
+	color: #fff;
+	font-size: 1em;
+	vertical-align: middle;
+	display: inline-block;
+	cursor: default;
 }
 
 /* Générateur */

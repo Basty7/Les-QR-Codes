@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Les usages du code QR</title>
-		<link rel="stylesheet" href="style.css">
-		<script src="index.js" defer></script>
-		<link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-	</head>
 
-	<body>
-		<nav>
-			<p id="index" class="navlist material-symbols-outlined" title="Retour à l'acceuil">home</p>
-			<p class="navlist" id="histoire">L'histoire du Code QR</p>
-			<p class="navlist" id="principe">Le fonctionnement du Code QR</p>
-			<p class="navlist" id="uses">Les fonctions du Code QR</p>
-			<p class="navlist" id="gen">Générateur avancé</p>
-		</nav>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Les usages du code QR</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="index.js" defer></script>
+	<link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+	<nav>
+		<p id="index" class="navlist material-symbols-outlined" title="Retour à l'acceuil">home</p>
+		<p class="navlist" id="histoire">L'histoire du Code QR</p>
+		<p class="navlist" id="principe">Le fonctionnement du Code QR</p>
+		<p class="navlist" id="uses">Les fonctions du Code QR</p>
+		<p class="navlist" id="gen">Générateur avancé</p>
+	</nav>
 	<h1 class="titre">Les usages et fonctions du code QR</h1>
-	</body>
+	<h2>Les Codes Multimédia</h2>
+	<p>Les codes QR sont également utilisés pour diriger les utilisateurs vers des contenus multimédias spécifiques
+		(tels que des vidéos, des audios, des images, des documents et tout type de contenu accessible sur le web). Ce
+		type de code QR est appelé "<i>code QR multimédia</i>".</p>
+	<h2 title="OS= système d'exploitation">Les OS mobiles</h2>
+	<p>Les codes QR peuvent être utilisés sur différents systèmes d'exploitation d'appareils mobiles. Les iPhones
+		fonctionnant sous iOS 11 et plus et certains appareils Android peuvent scanner les codes QR en mode natif sans
+		avoir à télécharger une application externe. L'application caméra est capable de scanner et d'afficher le type
+		de code QR (uniquement sur l'iPhone) ainsi que le lien (à la fois sur Android et l'iPhone). Ces appareils
+		prennent en charge la redirection d'URL, ce qui permet aux codes QR d'envoyer des métadonnées aux applications
+		existantes sur l'appareil. De nombreuses applications payantes ou gratuites sont disponibles et permettent de
+		scanner les codes et de créer un lien vers une URL externe.</p>
+	<h2>Rejoindre un réseau wifi</h2>
+	<p>Les codes QR peuvent être utilisés pour se connecter à un réseau Wi-Fi. Lorsque le code QR est scanné, il affiche
+		les informations de connexion Wi-Fi et permet à l'utilisateur de se connecter au réseau sans avoir à saisir
+		manuellement les informations de connexion.<br>
+		Il faut spécifier le SSID (nom du réseau), le type de sécurité (WPA, WEP, etc.), le mot de passe (clé de
+		sécurité), ainsi que la visibilité du réseau (s'il est caché ou non).<br>
+	</p>
+	<p>
+		Voici ce à quoi ressemble la chaîne de caractères encodée dans le code QR pour se connecter à un réseau Wi-Fi :<br>
+		<code id="code">
+				WIFI:S:&#60;SSID&#62;;T:&#60;WEP|WPA|blank&#62;;P:&#60;PASSWORD&#62;;H:&#60;true|false|blank&#62;;; <span class="material-symbols-outlined" id="copy">content_copy</span>
+			</code>
+	</p>
+
+
+
+</body>
+
 </html>

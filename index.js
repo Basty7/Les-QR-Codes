@@ -59,9 +59,8 @@ for (let i = 0; i < navlis.length; i++) {
 	navlis[i].addEventListener("click", function () {
 		location.href = this.id + ".html#";
 	});
-	if (navlis[i].id + '.html#' == location.href.split("/").slice(-1)[0]) {
+	if (navlis[i].id == location.href.split("/").slice(-1)[0].split(".html")[0]) {
 		navlis[i].style.backgroundColor = "#a665239f";
-
 	}
 }
 
@@ -72,6 +71,10 @@ titre.addEventListener("click", function () {
 	titre.title = "Retour en haut de la page";
 	location.href = "#";
 });
+titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight+ 5 + "px";
+window.addEventListener("resize", function() {
+	titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight+ 5 + "px";
+})
 
 // Permettre l'expansion des images
 
@@ -101,6 +104,16 @@ if (location.href.split("/").slice(-1) == "index.html" || location.href.split("/
 	});
 	document.getElementById("url_gen").addEventListener("click", function () {
 		generer_QR(document.getElementById("link").value, "qrcode", true);
+	});
+}
+
+// Ajouter les évènements aux éléments de la page des utilisations
+
+else if (location.href.split("/").slice(-1)[0].split(".html")[0] == "uses") {
+	document.getElementById("copy").addEventListener("click", function () {
+		let copyText = document.getElementById("code").innerText.split(" ")[0];
+		navigator.clipboard.writeText(copyText);
+		alert("Copié dans le presse-papier: " + copyText);
 	});
 }
 
