@@ -55,7 +55,7 @@ function show(id) {
 // Ajouter les évènements aux éléments de la barre de navigation
 const navlis = document.getElementsByTagName("nav")[0].children;
 
-for (let i = 0; i < navlis.length; i++) {
+for (let i = 1; i < navlis.length; i++) {
 	navlis[i].addEventListener("click", function () {
 		location.href = this.id + ".html#";
 	});
@@ -63,6 +63,26 @@ for (let i = 0; i < navlis.length; i++) {
 		navlis[i].style.backgroundColor = "#a665239f";
 	}
 }
+
+function showPageNav() {
+	document.getElementById("pagenav").classList.toggle("hidden");
+	document.getElementById("pagenav").classList.toggle("shown");
+	document.getElementById("pagenav").style.top = document.getElementsByTagName("nav")[0].offsetHeight + "px";
+	let pagenavOPEN = document.getElementById("pagenav").classList.contains("shown");
+}
+
+navlis[0].addEventListener("click", showPageNav);
+navlis[0].addEventListener("mouseover", showPageNav);
+document.getElementById("pagenav").addEventListener("mouseleave", showPageNav);
+
+
+document.addEventListener("click", function (event) {
+	if (event.target != navlis[0] && event.target != document.getElementById("pagenav") && !(event.target in document.getElementById("pagenav").children)) {
+		showPageNav();
+	}
+});
+
+
 
 // Titre cliquable
 
