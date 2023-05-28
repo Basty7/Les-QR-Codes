@@ -55,7 +55,7 @@ function show(id) {
 // Ajouter les évènements aux éléments de la barre de navigation
 const navlis = document.getElementsByTagName("nav")[0].children;
 
-for (let i = 1; i < navlis.length; i++) {
+for (let i = +(["principe", "uses"].includes(location.href.split("/").slice(-1)[0].split(".html")[0])); i < navlis.length; i++) {
 	navlis[i].addEventListener("click", function () {
 		location.href = this.id + ".html#";
 	});
@@ -68,41 +68,31 @@ function showPageNav() {
 	document.getElementById("pagenav").classList.toggle("hidden");
 	document.getElementById("pagenav").classList.toggle("shown");
 	document.getElementById("pagenav").style.top = document.getElementsByTagName("nav")[0].offsetHeight + "px";
-	let pagenavOPEN = document.getElementById("pagenav").classList.contains("shown");
 }
-
-navlis[0].addEventListener("click", showPageNav);
-navlis[0].addEventListener("mouseover", showPageNav);
-document.getElementById("pagenav").addEventListener("mouseleave", showPageNav);
-
-
-document.addEventListener("click", function (event) {
-	if (event.target != navlis[0] && event.target != document.getElementById("pagenav") && !(event.target in document.getElementById("pagenav").children)) {
-		showPageNav();
-	}
-});
-
-
 
 // Titre cliquable
 
 const titre = document.getElementsByTagName("h1")[0];
+const footer = document.getElementsByTagName("footer")[0];
+const lastel = document.body.children.item(document.body.children.length -2);
 titre.addEventListener("click", function () {
 	titre.title = "Retour en haut de la page";
 	location.href = "#";
 });
 titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight+ 5 + "px";
+lastel.style.marginBottom = footer.offsetHeight + 5 + "px"
 window.addEventListener("resize", function() {
 	titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight+ 5 + "px";
+	lastel.style.marginBottom = footer.offsetHeight + 5 + "px"
 })
+
 
 // Permettre l'expansion des images
 
 function expandImage(img) {
 	img.classList.toggle("expandedIMG");
 	img.classList.toggle("expandableIMG");
-		document.getElementsByClassName("footer")[0].classList.toggle("hidden")
-
+	document.getElementsByClassName("footer")[0].classList.toggle("hidden")
 }
 
 const expandableIMGs = document.getElementsByClassName("expandableIMG");
@@ -133,7 +123,33 @@ else if (location.href.split("/").slice(-1)[0].split(".html")[0] == "uses") {
 	document.getElementById("copy").addEventListener("click", function () {
 		let copyText = document.getElementById("code").innerText.split(" ")[0];
 		navigator.clipboard.writeText(copyText);
-		alert("Copié dans le presse-papier: " + copyText);
+		alert("Copié dans le presse-papier:\nn" + copyText);
+	});
+	document.getElementById("copyvCard").addEventListener("click", function () {
+		let copyText = document.getElementById("code2").innerText.split("content")[0];
+		navigator.clipboard.writeText(copyText);
+		alert("Copié dans le presse-papier:\n" + copyText);
+	});
+	navlis[0].addEventListener("click", showPageNav);
+	navlis[0].addEventListener("mouseover", showPageNav);
+	document.getElementById("pagenav").addEventListener("mouseleave", showPageNav);
+
+	document.addEventListener("click", function (event) {
+		if (event.target != navlis[0] && event.target != document.getElementById("pagenav") && !(event.target in document.getElementById("pagenav").children) && (document.getElementById("pagenav").classList.contains("shown"))) {
+			showPageNav();
+		}
+	});
+}
+
+else if (location.href.split("/").slice(-1)[0].split(".html")[0] == "principe") {
+	navlis[0].addEventListener("click", showPageNav);
+	navlis[0].addEventListener("mouseover", showPageNav);
+	document.getElementById("pagenav").addEventListener("mouseleave", showPageNav);
+
+	document.addEventListener("click", function (event) {
+		if (event.target != navlis[0] && event.target != document.getElementById("pagenav") && !(event.target in document.getElementById("pagenav").children) && (document.getElementById("pagenav").classList.contains("shown"))) {
+			showPageNav();
+		}
 	});
 }
 
