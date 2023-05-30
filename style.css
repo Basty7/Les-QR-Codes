@@ -253,6 +253,13 @@ a.legende {
 		height: auto;
 		margin-top: 3vh;
 	}
+	.expandedIMG>img {
+		width: 90%;
+		height: auto;
+	}
+	.expandedIMG>p.legende {
+		margin: 0 1em;
+	}
 }
 
 .expandableIMG>#MyGithubIMG {

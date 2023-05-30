@@ -92,7 +92,7 @@ window.addEventListener("resize", function() {
 function expandImage(img) {
 	img.classList.toggle("expandedIMG");
 	img.classList.toggle("expandableIMG");
-	document.getElementsByClassName("footer")[0].classList.toggle("hidden")
+	document.getElementsByTagName("footer")[0].classList.toggle("hidden")
 }
 
 const expandableIMGs = document.getElementsByClassName("expandableIMG");
