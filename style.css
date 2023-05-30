@@ -39,7 +39,7 @@ nav {
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: rgb(189, 188, 123) ; 
+	background: #C095BA; 
 	width: 100%;
 	text-align: center;
 	display: flex;
@@ -48,6 +48,7 @@ nav {
 	cursor: pointer;
 	justify-content: space-around;
 	overflow: 0;
+	font-size: 2em;
 }
 
 nav>p {
@@ -61,7 +62,7 @@ nav>p {
 }
 
 nav>p:hover{
-	background-color: #a665235f;
+	background-color: #B085AA;
 }
 
 nav>p.material-symbols-outlined {
@@ -258,7 +259,7 @@ a.legende {
 	width: 15vw;
 }
 
-code#code, code#code2{
+code#code, code#code2, code#code3{
 	font-size: 1em;
 	background-color: #f6f6f6;
 	color: hsl(210,8%,20%);
@@ -272,7 +273,7 @@ code#code, code#code2{
 	margin: auto 0;
 	word-wrap: break-word;
 }
-code#code+span, code#code2+span {
+code#code+span, code#code2+span, code#code3+span {
 	color: #252832;
 	font-size: 1.5em;
 	height: 100%;

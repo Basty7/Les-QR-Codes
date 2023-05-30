@@ -60,7 +60,7 @@ for (let i = +(["principe", "uses"].includes(location.href.split("/").slice(-1)[
 		location.href = this.id + ".html#";
 	});
 	if (navlis[i].id == location.href.split("/").slice(-1)[0].split(".html")[0]) {
-		navlis[i].style.backgroundColor = "#a665239f";
+		navlis[i].style.backgroundColor = "#A0759A";
 	}
 }
 
@@ -127,6 +127,11 @@ else if (location.href.split("/").slice(-1)[0].split(".html")[0] == "uses") {
 	});
 	document.getElementById("copyvCard").addEventListener("click", function () {
 		let copyText = document.getElementById("code2").innerText.split("content")[0];
+		navigator.clipboard.writeText(copyText);
+		alert("Copié dans le presse-papier:\n" + copyText);
+	});
+	document.getElementById("copymailto").addEventListener("click", function () {
+		let copyText = document.getElementById("code3").innerText.split("content")[0];
 		navigator.clipboard.writeText(copyText);
 		alert("Copié dans le presse-papier:\n" + copyText);
 	});
