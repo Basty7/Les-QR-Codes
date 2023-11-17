@@ -1,7 +1,6 @@
 /* Feuille de style pour toutes les pages */
-
-
-
+/*  */
+/*  */
 /* Import des polices */
 
 @font-face {
@@ -117,6 +116,7 @@ h2 {
 .expandableIMG {
 	padding: 0;
 	margin: 0;
+	width: 100%;
 }
 
 .expandableIMG>img {cursor: zoom-in;}
@@ -171,6 +171,7 @@ a.legende {
 	nav {
 		flex-wrap: wrap;
 	}
+	
 }
 
 .expandableIMG>#MyGithubIMG {
@@ -209,6 +210,7 @@ a.legende {
 	background-color: #b89524;
 	color: white;
 	padding: 8px;
+	margin-bottom: 0;
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
@@ -243,7 +245,7 @@ a.legende {
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	
+	margin-top: 0;
 }
 .funcs_sel_it {
 	text-align: center;
