@@ -1,23 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Les usages du code QR</title>
-		<link rel="stylesheet" href="style.css">
-		<script src="index.js" defer></script>
-		<link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-	</head>
 
-	<body>
-		<nav>
-			<p id="index" class="navlist material-symbols-outlined" title="Retour à l'acceuil">home</p>
-			<p class="navlist" id="histoire">L'histoire du Code QR</p>
-			<p class="navlist" id="principe">Le fonctionnement du Code QR</p>
-			<p class="navlist" id="uses">Les fonctions du Code QR</p>
-			<p class="navlist" id="gen">Générateur avancé</p>
-		</nav>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Les usages du code QR</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="index.js" defer></script>
+	<link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+	<nav>
+		<p id="menu" class="navlist material-symbols-outlined">menu</p>
+		<p id="index" class="navlist material-symbols-outlined" title="Retour à l'acceuil">home</p>
+		<p class="navlist" id="histoire">L'histoire du Code QR</p>
+		<p class="navlist" id="principe">Le fonctionnement du Code QR</p>
+		<p class="navlist" id="uses">Les fonctions du Code QR</p>
+		<p class="navlist" id="gen">Générateur avancé</p>
+	</nav>
+	<aside id="pagenav" class="hidden">
+		<a href="#" class="pagenav"><span class="pn1"><span class="material-symbols-outlined">north</span>Haut de la page</span></a>
+		<a href="#multi" class="pagenav"><span class="pn1">Les codes multimédia</span></a>
+		<a href="#os" class="pagenav"><span class="pn1">Les OS mobiles</span></a>
+		<a href="#wifi" class="pagenav"><span class="pn1"><span class="material-symbols-outlined">magic_tether</span>Rejoindre un réseau WiFi</span></a>
+		<a href="#mailto" class="pagenav"><span class="pn1"><span class="material-symbols-outlined">mail</span>Mail</span></a>
+		<a href="#vCard" class="pagenav"><span class="pn1"><span class="material-symbols-outlined">contact_mail</span> Carte de contact (vCard)</span></a>
+	</aside>
 	<h1 class="titre">Les usages et fonctions du code QR</h1>
-	</body>
+	<h2 id="multi">Les Codes Multimédia</h2>
+	<p>Les codes QR sont également utilisés pour diriger les utilisateurs vers des contenus multimédias spécifiques
+		(tels que des vidéos, des audios, des images, des documents, des sites web et tout type de contenu accessible sur le web). Ce
+		type de code QR est appelé "<i>code QR multimédia</i>".</p>
+	<h2 title="OS = système d'exploitation" id="os">Les OS mobiles</h2>
+	<p>Les codes QR peuvent être utilisés sur différents systèmes d'exploitation d'appareils mobiles. Les iPhones
+		fonctionnant sous iOS 11 et plus et certains appareils Android peuvent scanner les codes QR en mode natif sans
+		avoir à télécharger une application externe. L'application caméra est capable de scanner et d'afficher le type
+		de code QR (uniquement sur l'iPhone) ainsi que le lien (à la fois sur Android et l'iPhone). Ces appareils
+		prennent en charge la redirection d'URL, ce qui permet aux codes QR d'envoyer des métadonnées aux applications
+		existantes sur l'appareil. De nombreuses applications payantes ou gratuites sont disponibles et permettent de
+		scanner les codes et de créer un lien vers une URL externe.</p>
+	<h2 id="wifi">Rejoindre un réseau wifi</h2>
+	<p>Les codes QR peuvent être utilisés pour se connecter à un réseau Wi-Fi. Lorsque le code QR est scanné, il affiche
+		les informations de connexion Wi-Fi et permet à l'utilisateur de se connecter au réseau sans avoir à saisir
+		manuellement les informations de connexion.<br>
+		Il faut spécifier le SSID (nom du réseau), le type de sécurité (WPA, WEP, etc.), le mot de passe (clé de
+		sécurité), ainsi que la visibilité du réseau (s'il est caché ou non).<br>
+	</p>
+	<p>
+		Voici ce à quoi ressemble la chaîne de caractères encodée dans le code QR pour se connecter à un réseau Wi-Fi :
+	</p>
+	<div class="Flex2" style="flex-wrap: nowrap;">
+		<code
+			id="code">WIFI:S:&#60;SSID&#62;;T:&#60;WEP|WPA|blank&#62;;P:&#60;PASSWORD&#62;;H:&#60;true|false|blank&#62;;;</code>
+		<span class="material-symbols-outlined" id="copy">content_copy</span>
+	</div>
+	<h2 id="mailto">Les codes QR mailto</h2>
+	<p>
+		Ces codes QR permettent d'ouvrir directement un nouveau brouillon de mail à l'adresse spécifiée (on peut aussi les utiliser les lien mailto directement sur un ordinateur ou un téléphone, sans passer par un QR) et ça ressemble à ça :<br>
+		<div class="Flex2">
+			<code id="code3">mailto:bernard.legrand@exemple.com</code><span class="material-symbols-outlined" id="copymailto">content_copy</span>
+		</div>
+	</p>
+	<h2 id="vCard">Carte de contact (vCard)</h2>
+	<p>On peut utiliser les codes QR pour partager des contacts, ils contiennent alors toutes les informations
+		nécessaires à la création du contact dans l'appareil de lecture.</p>
+	<p>Voici ce à quoi ressemble la chaîne de caractères encodée dans le code QR pour partager un contact :</p>
+	<div class="Flex2">
+		<code id="code2">BEGIN:VCARD<br>
+		VERSION:4.0<br>
+		FN:Bernard LEGRAND<br>
+		N:LEGRAND;Bernard;;;<br>
+		GENDER:M<br>
+		EMAIL;TYPE=work:bernard.legrand@exemple.com<br>
+		PHONE;TYPE=work,voice;VALUE=uri:tel:+33 0 00 00 00 00<br>
+		END:VCARD<br>
+		</code>
+		<span class="material-symbols-outlined" id="copyvCard">content_copy</span>
+	</div>
+	<p>On déclare d'abord la version, puis le nom du contact, ensuite son nom et prénom, son genre et enfin son adresse mail et son numéro de téléphone.</p>
+	<footer>
+		<p class="sources">Sources:</p>
+		<a href="https://en.wikipedia.org/wiki/QR_code" class="sources" title="Pas mal d'infos" target="_blank">Wikipedia - Codes QR - en</a>
+		<a href="https://fr.wikipedia.org/wiki/Code_QR" class="sources" title="Pas mal d'infos aussi" target="_blank">Wikipedia - Codes QR - fr</a>
+		<a href="https://en.wikipedia.org/wiki/VCard" class="sources" title="Les informations pour générer les cartes de Contact" target="_blank">Wikipedia - vCard - en</a>
+		<a href="https://github.com/zhiyuan-l/qrcodejs" class="sources" title="La libraire qui permet de générer les codes QR" target="_blank">qrcodejs</a>
+	</footer>
+</body>
+
 </html>

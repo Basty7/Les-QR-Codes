@@ -22,26 +22,25 @@
 	</nav>
 	<h1 class="titre" title="Retour en haut de la page">Les Codes QR</h1>
 
-	<p>Nous utilisons les Codes QR au quotidien, mais connaissez-vous leur histoire, comment ils fonctionnent et l'étendu de ce qu'on peut faire avec ? <br>Je vais essayer de répondre à toutes ces questions <i>via</i> ce site.</p>
+	<p>Nous utilisons les Codes QR au quotidien, mais connaissez-vous leur histoire, comment ils fonctionnent et l'étendu de ce qu'on peut faire avec ?<br>Je vais essayer de répondre à toutes ces questions <i>via</i> ce site.</p>
 	<p>Pour commencer il faut savoir ce que signifie l'abréviation <span class="red">"Code QR"</span>: ce nom nous vient de l'anglais. <span class = "red">QR</span> signifiant <span class="red">"Quick-response"</span> Code QR signifie donc <span class="red">"Code à réponse rapide"</span> !</p>
 	<section>
 		<h2>Générateur de QR Code</h2>
 		<p>Ce Générateur est assez sommaire et ne permet pour l'instant de ne générer que des codes QR menant à une adresse internet. (Cliquez dessus pour télecharger)</p>
-		<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
-		<button onclick="clear_box('link');" title="Vider le champ" class="link-bt">X</button>
-		<button id="url_gen">Générer</button>
-		<br><br>
-		<a id="qrcode" download="QRCode"></a>
+		<div class="indexgen">
+			<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
+			<button onclick="clear_box('link');" title="Vider le champ" class="link-bt">X</button>
+			<button id="url_gen">Générer</button>
+			<br><br>
+			<a id="qrcode" download="QRCode"></a>
+		</div>
 	</section>
-	<div class="footer">
 		<footer>
 			<p class="sources">Sources:</p>
-			<a href="https://en.wikipedia.org/wiki/QR_code" class="sources" title="Pas mal d'infos">Wikipedia - Codes QR - en</a>
-			<a href="https://fr.wikipedia.org/wiki/Code_QR" class="sources" title="Pas mal d'infos aussi">Wikipedia - Codes QR - fr</a>
-			<a href="https://en.wikipedia.org/wiki/VCard" class="sources" title="Les informations pour générer les cartes de Contact">Wikipedia - vCard - en</a>
-			<a href="https://github.com/zhiyuan-l/qrcodejs" class="sources" title="La libraire qui permet de générer les codes QR">qrcodejs</a>
+			<a href="https://en.wikipedia.org/wiki/QR_code" class="sources" title="Pas mal d'infos" target="_blank">Wikipedia - Codes QR - en</a>
+			<a href="https://fr.wikipedia.org/wiki/Code_QR" class="sources" title="Pas mal d'infos aussi" target="_blank">Wikipedia - Codes QR - fr</a>
+			<a href="https://en.wikipedia.org/wiki/VCard" class="sources" title="Les informations pour générer les cartes de Contact" target="_blank">Wikipedia - vCard - en</a>
+			<a href="https://github.com/zhiyuan-l/qrcodejs" class="sources" title="La libraire qui permet de générer les codes QR" target="_blank">qrcodejs</a>
 		</footer>
-	</div>
 </body>
-<script>document.designMode = "off"</script>
 </html>
