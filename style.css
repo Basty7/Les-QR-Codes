@@ -261,6 +261,9 @@ a.legende {
 	.expandedIMG>p.legende {
 		margin: 0 1em;
 	}
+	.qrimg {
+		width: 90%;
+	}
 }
 
 .expandableIMG>#MyGithubIMG {
