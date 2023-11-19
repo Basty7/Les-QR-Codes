@@ -35,7 +35,7 @@
 	<div id="gen">
 		<!-- Protocole HTTP -->
 		<div id="http" class="gen">
-			<input type="url" id='link' placeholder="https://example.com" pattern="https://*.*" required class="link-bt"></input>
+			<input type="url" id='link' placeholder="https://example.com" class="link-bt" title="L'adresse vers laquelle renverra votre code QR"></input>
 			<button onclick="clear_box('link');" title="Vider le champ" class="link-bt">X</button> <br>
 		</div>
 		<!-- Réseau WIFI -->
@@ -69,8 +69,9 @@
 			<input type="text" id="colorFG" placeholder="#000000" value="#000000" title="Couleur d'arrière plan">
 			<input type="text" id="colorBG" placeholder="#ffffff" value="#ffffff" title="Couleur d'avant plan">
 			<input type="number" id="border" placeholder="2" title="Taille de la bordure" value=2>
-			<input type="checkbox" name="SVG" id="ifsvg">
-			<button id="gen-bt">Générer</button>
+			<input type="checkbox" name="SVG" id="ifsvg" title="Cliquez la case pour obtenir un SVG">
+			<label for="SVG">exporter en SVG ?</label>
+			<button id="gen-bt" title="Appuyez sur le bouton pour générer le code QR">Générer</button>
 		</div>
 	</div>
 	<br>
