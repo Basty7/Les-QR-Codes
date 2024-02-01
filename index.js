@@ -7,7 +7,7 @@ async function generer_QR(string, divID, isSimple = false) {
 		'colorFG': '#000000',
 		'colorBG': '#ffffff',
 	};
-	let issvg = isSimple
+	let issvg = false;
 	if (!isSimple) {
 		const tab2 = Object.values(tab);
 		for (let i = 0; i < 3; i++) {
@@ -17,20 +17,23 @@ async function generer_QR(string, divID, isSimple = false) {
 			}
 		}
 		issvg = document.getElementById("ifsvg").checked;
+		console.log(issvg);
 	}
-	const qrc = new QRCode(qrdiv, {
-		text: string,
-		width: 1024 + 8 * tab['border'],
-		height: 1024 + 8 * tab['border'],
-		useSVG: issvg,
-		border: tab['border'],
-		colorDark: tab['colorFG'],
-		colorLight: tab['colorBG'],
-		correctLevel: QRCode.CorrectLevel.H
-	});
-	await new Promise(r => setTimeout(r, 100));
-	qrdiv.title = "Télécharger le Code QR";
+
 	if (issvg) {
+		const qrc = new QRCode(qrdiv, {
+			text: string,
+			width: 1024 + 8 * tab['border'],
+			height: 1024 + 8 * tab['border'],
+			useSVG: true,
+			border: tab['border'],
+			colorDark: tab['colorFG'],
+			colorLight: tab['colorBG'],
+			correctLevel: QRCode.CorrectLevel.H
+		});
+		await new Promise(r => setTimeout(r, 100));
+		qrdiv.title = "Télécharger le Code QR";
+		console.log("I'm here");
 		qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
 		let svg = qrdiv.innerHTML;
 		svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
@@ -38,10 +41,23 @@ async function generer_QR(string, divID, isSimple = false) {
 		qrdiv.href = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
 	}
 	else {
+		const qrc = new QRCode(qrdiv, {
+			text: string,
+			width: 1024 + 8 * tab['border'],
+			height: 1024 + 8 * tab['border'],
+			useSVG: issvg,
+			border: tab['border'],
+			colorDark: tab['colorFG'],
+			colorLight: tab['colorBG'],
+			correctLevel: QRCode.CorrectLevel.H
+		});
+		await new Promise(r => setTimeout(r, 100));
+		qrdiv.title = "Télécharger le Code QR";
 		let png = qrdiv.querySelector("img");
 		qrdiv.download = 'QRCode.png';
 		qrdiv.href = png.src;
 		qrdiv.getElementsByTagName("img")[0].classList.add("qrimg");
+		console.log("I'm here png");
 	}
 }
 
@@ -84,15 +100,15 @@ function showPageNav() {
 
 const titre = document.getElementsByTagName("h1")[0];
 const footer = document.getElementsByTagName("footer")[0];
-const lastel = document.body.children.item(document.body.children.length -2);
+const lastel = document.body.children.item(document.body.children.length - 2);
 titre.addEventListener("click", function () {
 	titre.title = "Retour en haut de la page";
 	location.href = "#";
 });
-titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight+ 5 + "px";
+titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight + 5 + "px";
 lastel.style.marginBottom = footer.offsetHeight + 5 + "px"
-window.addEventListener("resize", function() {
-	titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight+ 5 + "px";
+window.addEventListener("resize", function () {
+	titre.style.marginTop = document.getElementsByTagName("nav")[0].offsetHeight + 5 + "px";
 	lastel.style.marginBottom = footer.offsetHeight + 5 + "px"
 })
 
@@ -206,7 +222,6 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 			case "http":
 				const link = document.getElementById("link").value;
 				generer_QR(link, "qrcode");
-				console.log("Went through http");
 				break;
 			case "wifi":
 				const ssid = document.getElementById("ssid").value;
@@ -214,12 +229,10 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 				const secu = document.getElementById("secu").value;
 				const visi = document.getElementById("visi").value;
 				generer_QR(`WIFI:S:${ssid};T:${secu};P:${mdp};H:${visi};;`, "qrcode");;
-				console.log("Went through wifi");
 				break;
 			case "mailto":
 				const mail = document.getElementById("mail").value;
 				generer_QR(`mailto:${mail}`, "qrcode");
-				console.log("Went through mailto");
 				break;
 			case "vCard":
 				const firstName = document.getElementById("firstName").value;
@@ -234,7 +247,6 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 					"TEL;TYPE=CELL:" + phone + "\n" +
 					"END:VCARD";
 				generer_QR(vCard, "qrcode");
-				console.log("Went through vCard");
 				break;
 			default:
 				break;
