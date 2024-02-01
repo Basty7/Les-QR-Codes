@@ -7,7 +7,7 @@ async function generer_QR(string, divID, isSimple = false) {
 		'colorFG': '#000000',
 		'colorBG': '#ffffff',
 	};
-	let issvg = false;
+	// let issvg = false;
 	if (!isSimple) {
 		const tab2 = Object.values(tab);
 		for (let i = 0; i < 3; i++) {
@@ -16,49 +16,47 @@ async function generer_QR(string, divID, isSimple = false) {
 				tab[Object.keys(tab)[i]] = tab2[i];
 			}
 		}
-		issvg = document.getElementById("ifsvg").checked;
-		console.log(issvg);
+		// issvg = document.getElementById("ifsvg").checked;
 	}
 
-	if (issvg) {
-		const qrc = new QRCode(qrdiv, {
-			text: string,
-			width: 1024 + 8 * tab['border'],
-			height: 1024 + 8 * tab['border'],
-			useSVG: true,
-			border: tab['border'],
-			colorDark: tab['colorFG'],
-			colorLight: tab['colorBG'],
-			correctLevel: QRCode.CorrectLevel.H
-		});
-		await new Promise(r => setTimeout(r, 100));
-		qrdiv.title = "Télécharger le Code QR";
-		console.log("I'm here");
-		qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
-		let svg = qrdiv.innerHTML;
-		svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
-		qrdiv.download = `QRCode.svg`;
-		qrdiv.href = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
-	}
-	else {
-		const qrc = new QRCode(qrdiv, {
-			text: string,
-			width: 1024 + 8 * tab['border'],
-			height: 1024 + 8 * tab['border'],
-			useSVG: issvg,
-			border: tab['border'],
-			colorDark: tab['colorFG'],
-			colorLight: tab['colorBG'],
-			correctLevel: QRCode.CorrectLevel.H
-		});
-		await new Promise(r => setTimeout(r, 100));
-		qrdiv.title = "Télécharger le Code QR";
-		let png = qrdiv.querySelector("img");
-		qrdiv.download = 'QRCode.png';
-		qrdiv.href = png.src;
-		qrdiv.getElementsByTagName("img")[0].classList.add("qrimg");
-		console.log("I'm here png");
-	}
+	// if (issvg==true) {
+	// 	const Qrc = new QRCode(qrdiv, {
+	// 		text: string,
+	// 		width: 1024 + 8 * tab['border'],
+	// 		height: 1024 + 8 * tab['border'],
+	// 		useSVG: true,
+	// 		border: tab['border'],
+	// 		colorDark: tab['colorFG'],
+	// 		colorLight: tab['colorBG'],
+	// 		correctLevel: QRCode.CorrectLevel.H
+	// 	});
+	// 	await new Promise(r => setTimeout(r, 100));
+	// 	qrdiv.title = "Télécharger le Code QR";
+	// 	console.log("I'm here svg");
+	// 	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
+	// 	let svg = qrdiv.innerHTML;
+	// 	svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
+	// 	qrdiv.download = `QRCode.svg`;
+	// 	qrdiv.href = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
+
+	// }
+
+	const qrc = new QRCode(qrdiv, {
+		text: string,
+		width: 1024 + 8 * tab['border'],
+		height: 1024 + 8 * tab['border'],
+		border: tab['border'],
+		colorDark: tab['colorFG'],
+		colorLight: tab['colorBG'],
+		correctLevel: QRCode.CorrectLevel.H
+	});
+	qrdiv.title = "Télécharger le Code QR";
+	let png = qrdiv.querySelector("img");
+	qrdiv.download = 'QRCode.png';
+	qrdiv.href = png.src;
+	qrdiv.getElementsByTagName("img")[0].classList.add("qrimg");
+	console.log("I'm here png");
+
 }
 
 // Fonction: Effacer le contenu de la zone de texte
@@ -213,7 +211,8 @@ else if (location.href.split("/").slice(-1)[0] == "gen.html#" || location.href.s
 		document.getElementById(funcs.children[i].id.slice(7)).addEventListener("keypress", function (event) {
 			if (event.key === "Enter") {
 				event.preventDefault();
-				document.getElementById(this.id + "_gen").click();
+				document.getElementById("gen-bt").click();
+				// document.getElementById(this.id + "_gen").click();
 			}
 		});
 	}
