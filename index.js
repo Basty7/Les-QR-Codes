@@ -53,6 +53,7 @@ async function generer_QR(string, divID, isSimple = false) {
 	qrdiv.title = "Télécharger le Code QR";
 	let png = qrdiv.querySelector("img");
 	qrdiv.download = 'QRCode.png';
+	await new Promise(r => setTimeout(r,100));
 	qrdiv.href = png.src;
 	qrdiv.getElementsByTagName("img")[0].classList.add("qrimg");
 	console.log("I'm here png");
