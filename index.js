@@ -19,27 +19,7 @@ async function generer_QR(string, divID, isSimple = false) {
 		// issvg = document.getElementById("ifsvg").checked;
 	}
 
-	// if (issvg==true) {
-	// 	const Qrc = new QRCode(qrdiv, {
-	// 		text: string,
-	// 		width: 1024 + 8 * tab['border'],
-	// 		height: 1024 + 8 * tab['border'],
-	// 		useSVG: true,
-	// 		border: tab['border'],
-	// 		colorDark: tab['colorFG'],
-	// 		colorLight: tab['colorBG'],
-	// 		correctLevel: QRCode.CorrectLevel.H
-	// 	});
-	// 	await new Promise(r => setTimeout(r, 100));
-	// 	qrdiv.title = "Télécharger le Code QR";
-	// 	console.log("I'm here svg");
-	// 	qrdiv.getElementsByTagName("svg")[0].classList.add("qrimg");
-	// 	let svg = qrdiv.innerHTML;
-	// 	svg = svg.slice(0, 4) + ' xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"' + svg.slice(4);
-	// 	qrdiv.download = `QRCode.svg`;
-	// 	qrdiv.href = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
-
-	// }
+	
 
 	const qrc = new QRCode(qrdiv, {
 		text: string,
